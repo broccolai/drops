@@ -1,0 +1,13 @@
+name: CubCustomDrops
+version: 4.7.1
+load: POSTWORLD
+softdepend: [Multiverse-Core, UltraRegions, Ultra_Regions]
+author: cubito_verde
+website: https://www.spigotmc.org/resources/cub-custom-drops.71153/
+main: com.gmail.cubitverde.CubMainPlugin2
+prefix: CubCustomDrops
+api-version: 1.13
+
+commands:
+  cubcustomdrops:
+    aliases: [cdrops]
