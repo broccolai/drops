@@ -1,6 +1,7 @@
 package com.gmail.cubitverde;
 
 import org.bukkit.FireworkEffect;
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
@@ -19,20 +20,28 @@ public class CMP2ListenersKillmob implements Listener {
     private void entityDeath (EntityDeathEvent death) {
         LivingEntity deadEntity = death.getEntity();
         Player player = death.getEntity().getKiller();
-        if (player == null) {
-            return;
-        }
 
         for (String tempStr : CubMainPlugin2.mobNames.keySet()) {
             String newString1 = tempStr;
             newString1 = newString1.substring(2).toLowerCase();
-            String newString2 = newString1.replace(' ', '_');
-            if (deadEntity.getType().getName().equals(newString2)) {
+            String newString2;
+            if (CubMainPlugin2.plugin.getServer().getVersion().contains("1.16") && newString1.contains("zombie pigman")) {
+                newString2 = "zombified_piglin";
+            } else if (CubMainPlugin2.plugin.getServer().getVersion().contains("1.16") && newString1.contains("snowman")) {
+                newString2 = "snow_golem";
+            } else {
+                newString2 = newString1.replace(' ', '_');
+            }
+            if (deadEntity.getType().getName() != null && deadEntity.getType().getName().equals(newString2)) {
                 CMP2Mob tempMob = CubMainPlugin2.mobNames.get(tempStr);
                 ArrayList<ItemStack> Drops = new ArrayList<>();
 
                 if (tempMob.getVanillaDrops() != null && tempMob.getVanillaDrops().contains(deadEntity.getWorld())) {
                     death.getDrops().clear();
+                }
+
+                if (!CubMainPlugin2.afkFarm && player == null) {
+                    return;
                 }
 
                 if (tempMob.getCustomDrops() != null) {
@@ -89,7 +98,11 @@ public class CMP2ListenersKillmob implements Listener {
                                     continue;
                                 }
                             }
-                            Drops.add(tempDrop.getDrop());
+                            if (tempDrop.getDrop().getType().equals(Material.BARRIER)) {
+
+                            } else {
+                                Drops.add(tempDrop.getDrop());
+                            }
                             if (tempDrop.getEffect()) {
                                 Firework firework = (Firework) deadEntity.getLocation().getWorld().spawnEntity(deadEntity.getLocation(), EntityType.FIREWORK);
                                 FireworkMeta fireworkMeta = firework.getFireworkMeta();

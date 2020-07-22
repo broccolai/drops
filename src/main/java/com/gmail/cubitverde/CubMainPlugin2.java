@@ -39,6 +39,8 @@ public class CubMainPlugin2 extends JavaPlugin {
     static HashMap<String, Integer> boosterTime = new HashMap<>();
     static HashMap<String, Double> boosterBoost = new HashMap<>();
     static ArrayList<UUID> addingBooster = new ArrayList<>();
+    static boolean afkFarm;
+
     @Override
     public void onEnable() {
         plugin = this;
@@ -70,11 +72,11 @@ public class CubMainPlugin2 extends JavaPlugin {
         globalSettings.setLootingA(10);
 
         eggsMaterials.add(Material.BAT_SPAWN_EGG);
-        if (plugin.getServer().getVersion().contains("1.15")) {
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15")) {
             eggsMaterials.add(Material.BEE_SPAWN_EGG);
         }
         eggsMaterials.add(Material.BLAZE_SPAWN_EGG);
-        if (plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
             eggsMaterials.add(Material.CAT_SPAWN_EGG);
         }
         eggsMaterials.add(Material.CAVE_SPIDER_SPAWN_EGG);
@@ -90,11 +92,15 @@ public class CubMainPlugin2 extends JavaPlugin {
         eggsMaterials.add(Material.ENDERMAN_SPAWN_EGG);
         eggsMaterials.add(Material.ENDERMITE_SPAWN_EGG);
         eggsMaterials.add(Material.EVOKER_SPAWN_EGG);
-        if (plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
             eggsMaterials.add(Material.FOX_SPAWN_EGG);
         }
         eggsMaterials.add(Material.GHAST_SPAWN_EGG);
+        eggsMaterials.add(Material.ROTTEN_FLESH);
         eggsMaterials.add(Material.GUARDIAN_SPAWN_EGG);
+        if (plugin.getServer().getVersion().contains("1.16")) {
+            eggsMaterials.add(Material.HOGLIN_SPAWN_EGG);
+        }
         eggsMaterials.add(Material.HORSE_SPAWN_EGG);
         eggsMaterials.add(Material.HUSK_SPAWN_EGG);
         eggsMaterials.add(Material.IRON_INGOT);
@@ -103,19 +109,22 @@ public class CubMainPlugin2 extends JavaPlugin {
         eggsMaterials.add(Material.MOOSHROOM_SPAWN_EGG);
         eggsMaterials.add(Material.MULE_SPAWN_EGG);
         eggsMaterials.add(Material.OCELOT_SPAWN_EGG);
-        if (plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
             eggsMaterials.add(Material.PANDA_SPAWN_EGG);
         }
         eggsMaterials.add(Material.PARROT_SPAWN_EGG);
         eggsMaterials.add(Material.PHANTOM_SPAWN_EGG);
         eggsMaterials.add(Material.PIG_SPAWN_EGG);
-        if (plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+        if (plugin.getServer().getVersion().contains("1.16")) {
+            eggsMaterials.add(Material.PIGLIN_SPAWN_EGG);
+        }
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
             eggsMaterials.add(Material.PILLAGER_SPAWN_EGG);
         }
         eggsMaterials.add(Material.POLAR_BEAR_SPAWN_EGG);
         eggsMaterials.add(Material.PUFFERFISH_SPAWN_EGG);
         eggsMaterials.add(Material.RABBIT_SPAWN_EGG);
-        if (plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
             eggsMaterials.add(Material.RAVAGER_SPAWN_EGG);
         }
         eggsMaterials.add(Material.SALMON_SPAWN_EGG);
@@ -129,7 +138,10 @@ public class CubMainPlugin2 extends JavaPlugin {
         eggsMaterials.add(Material.SPIDER_SPAWN_EGG);
         eggsMaterials.add(Material.SQUID_SPAWN_EGG);
         eggsMaterials.add(Material.STRAY_SPAWN_EGG);
-        if (plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+        if (plugin.getServer().getVersion().contains("1.16") ) {
+            eggsMaterials.add(Material.STRIDER_SPAWN_EGG);
+        }
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
             eggsMaterials.add(Material.TRADER_LLAMA_SPAWN_EGG);
         }
         eggsMaterials.add(Material.TROPICAL_FISH_SPAWN_EGG);
@@ -137,24 +149,31 @@ public class CubMainPlugin2 extends JavaPlugin {
         eggsMaterials.add(Material.VEX_SPAWN_EGG);
         eggsMaterials.add(Material.VILLAGER_SPAWN_EGG);
         eggsMaterials.add(Material.VINDICATOR_SPAWN_EGG);
-        if (plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
             eggsMaterials.add(Material.WANDERING_TRADER_SPAWN_EGG);
         }
         eggsMaterials.add(Material.WITCH_SPAWN_EGG);
         eggsMaterials.add(Material.NETHER_STAR);
         eggsMaterials.add(Material.WITHER_SKELETON_SPAWN_EGG);
         eggsMaterials.add(Material.WOLF_SPAWN_EGG);
+        if (plugin.getServer().getVersion().contains("1.16")) {
+            eggsMaterials.add(Material.ZOGLIN_SPAWN_EGG);
+        }
+        if (plugin.getServer().getVersion().contains("1.16")) {
+            eggsMaterials.add(Material.ZOMBIFIED_PIGLIN_SPAWN_EGG);
+        } else {
+            eggsMaterials.add(Material.COOKED_PORKCHOP);
+        }
         eggsMaterials.add(Material.ZOMBIE_SPAWN_EGG);
         eggsMaterials.add(Material.ZOMBIE_HORSE_SPAWN_EGG);
-        eggsMaterials.add(Material.ZOMBIE_PIGMAN_SPAWN_EGG);
         eggsMaterials.add(Material.ZOMBIE_VILLAGER_SPAWN_EGG);
 
         eggsNames.add("§aBat");
-        if (plugin.getServer().getVersion().contains("1.15")) {
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15")) {
             eggsNames.add("§aBee");
         }
         eggsNames.add("§aBlaze");
-        if (plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
             eggsNames.add("§aCat");
         }
         eggsNames.add("§aCave Spider");
@@ -170,11 +189,15 @@ public class CubMainPlugin2 extends JavaPlugin {
         eggsNames.add("§aEnderman");
         eggsNames.add("§aEndermite");
         eggsNames.add("§aEvoker");
-        if (plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
             eggsNames.add("§aFox");
         }
         eggsNames.add("§aGhast");
+        eggsNames.add("§aGiant");
         eggsNames.add("§aGuardian");
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+            eggsNames.add("§aHoglin");
+        }
         eggsNames.add("§aHorse");
         eggsNames.add("§aHusk");
         eggsNames.add("§aIron Golem");
@@ -183,19 +206,22 @@ public class CubMainPlugin2 extends JavaPlugin {
         eggsNames.add("§aMooshroom");
         eggsNames.add("§aMule");
         eggsNames.add("§aOcelot");
-        if (plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+        if (plugin.getServer().getVersion().contains("1.16") ||plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
             eggsNames.add("§aPanda");
         }
         eggsNames.add("§aParrot");
         eggsNames.add("§aPhantom");
         eggsNames.add("§aPig");
-        if (plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+            eggsNames.add("§aPiglin");
+        }
+        if (plugin.getServer().getVersion().contains("1.16") ||plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
             eggsNames.add("§aPillager");
         }
         eggsNames.add("§aPolar Bear");
         eggsNames.add("§aPufferfish");
         eggsNames.add("§aRabbit");
-        if (plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
             eggsNames.add("§aRavager");
         }
         eggsNames.add("§aSalmon");
@@ -209,7 +235,10 @@ public class CubMainPlugin2 extends JavaPlugin {
         eggsNames.add("§aSpider");
         eggsNames.add("§aSquid");
         eggsNames.add("§aStray");
-        if (plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+        if (plugin.getServer().getVersion().contains("1.16")) {
+            eggsNames.add("§aStrider");
+        }
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
             eggsNames.add("§aTrader Llama");
         }
         eggsNames.add("§aTropical Fish");
@@ -217,29 +246,27 @@ public class CubMainPlugin2 extends JavaPlugin {
         eggsNames.add("§aVex");
         eggsNames.add("§aVillager");
         eggsNames.add("§aVindicator");
-        if (plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
+        if (plugin.getServer().getVersion().contains("1.16") || plugin.getServer().getVersion().contains("1.15") || plugin.getServer().getVersion().contains("1.14")) {
             eggsNames.add("§aWandering trader");
         }
         eggsNames.add("§aWitch");
         eggsNames.add("§aWither");
         eggsNames.add("§aWither skeleton");
         eggsNames.add("§aWolf");
+        if (plugin.getServer().getVersion().contains("1.16")) {
+            eggsNames.add("§aZoglin");
+        }
+        eggsNames.add("§aZombie pigman");
         eggsNames.add("§aZombie");
         eggsNames.add("§aZombie Horse");
-        eggsNames.add("§aZombie Pigman");
         eggsNames.add("§aZombie Villager");
 
         FileConfiguration config = getConfig();
 
         if (config.getConfigurationSection("CubCustomDrops") != null) {
 
-            if (config.getConfigurationSection("CubCustomDrops.lastPage") != null) {
-                for (int i = 0; i < config.getConfigurationSection("CubCustomDrops.lastPage.key").getKeys(false).size(); i++) {
-                    String temp = config.getString("CubCustomDrops.lastPage.key." + i);
-                    UUID temp1 = UUID.fromString(temp);
-                    int temp2 = config.getInt("CubCustomDrops.lastPage.get." + i);
-                    lastPage.put(temp1, temp2);
-                }
+            if (config.getConfigurationSection("CubCustomDrops.afkFarm") != null) {
+                afkFarm = config.getBoolean("CubCustomDrops.afkFarm");
             }
 
             if (config.getConfigurationSection("CubCustomDrops.mobNames") != null) {
@@ -413,15 +440,6 @@ public class CubMainPlugin2 extends JavaPlugin {
         FileConfiguration config = getConfig();
         config.set("CubCustomDrops", null);
 
-        if (lastPage != null) {
-            int i = 0;
-            for (UUID temp : lastPage.keySet()) {
-                config.set("CubCustomDrops.lastPage.key." + i, temp.toString());
-                config.set("CubCustomDrops.lastPage.get." + i, lastPage.get(temp));
-                i++;
-            }
-        }
-
         if (mobNames != null && mobNames.keySet().size() > 0) {
             int i = 0;
             for (String temp : mobNames.keySet()) {
@@ -543,8 +561,8 @@ public class CubMainPlugin2 extends JavaPlugin {
                 k++;
             }
         }
+        config.set("CubCustomDrops.afkFarm", afkFarm);
         config.set("CubCustomDrops.globalSettings.LoadedOnce", true);
-
 
         saveConfig();
     }

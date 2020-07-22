@@ -649,6 +649,16 @@ public class CMP2ListenersInv implements Listener {
                         Inventory globalWorlds = CMP2Utilities.ListGlobalWorlds(player,1);
                         player.openInventory(globalWorlds);
                         break;
+                    case "§aAfk farms: Currently enabled":
+                        CubMainPlugin2.afkFarm = false;
+                        Inventory globalSettings55 = CMP2Utilities.ListGlobalSettings();
+                        player.openInventory(globalSettings55);
+                        break;
+                    case "§cAfk farms: Currently disabled":
+                        CubMainPlugin2.afkFarm = true;
+                        Inventory globalSettings56 = CMP2Utilities.ListGlobalSettings();
+                        player.openInventory(globalSettings56);
+                        break;
                     case "§aAdd new booster":
                         player.closeInventory();
                         player.sendMessage("§2[CustomDrops] Adding a new booster:");

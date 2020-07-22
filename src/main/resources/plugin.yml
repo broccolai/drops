@@ -1,7 +1,7 @@
 name: CubCustomDrops
-version: 4.7.1
+version: 5.4.2
 load: POSTWORLD
-softdepend: [Multiverse-Core, UltraRegions, Ultra_Regions]
+softdepend: [Multiverse-Core, UltraRegions, Ultra_Regions, FabledSkyblock, BentoBox]
 author: cubito_verde
 website: https://www.spigotmc.org/resources/cub-custom-drops.71153/
 main: com.gmail.cubitverde.CubMainPlugin2

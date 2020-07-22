@@ -6,7 +6,7 @@
 
     <groupId>com.gmail.cubitverde</groupId>
     <artifactId>cubMainPlugin2</artifactId>
-    <version>4.7.1</version>
+    <version>5.4.2</version>
 
     <build>
         <plugins>
@@ -28,7 +28,7 @@
                         <phase>install</phase>
                         <configuration>
                             <target>
-                                <copy file="target/${project.artifactId}-${project.version}.jar" tofile="/Users/andres/Desktop/GitStuff/1TestServer/plugins/CubCustomDrops [4.7.1].jar"/>
+                                <copy file="target/${project.artifactId}-${project.version}.jar" tofile="/Users/andres/Desktop/GitStuff/1TestServer/plugins/CubCustomDrops [5.4.2].jar"/>
                             </target>
                         </configuration>
                         <goals>
@@ -103,7 +103,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
+            <version>1.16.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

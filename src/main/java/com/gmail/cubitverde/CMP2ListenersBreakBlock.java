@@ -13,7 +13,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 
@@ -35,7 +37,11 @@ public class CMP2ListenersBreakBlock implements Listener {
             if (ageable.getAge() == ageable.getMaximumAge()) {
 
             } else {
-                return;
+                if (brokenBlock.getType().equals(Material.SUGAR_CANE)) {
+
+                } else {
+                    return;
+                }
             }
         }
         for (Material material : CubMainPlugin2.editedBlocks.keySet()) {
@@ -46,6 +52,16 @@ public class CMP2ListenersBreakBlock implements Listener {
                     brokenBlock.setType(Material.GLASS);
                     ItemStack uselessTool = new ItemStack(Material.GLASS);
                     brokenBlock.breakNaturally(uselessTool);
+                    if (player.getInventory().getItemInMainHand().getItemMeta() != null && player.getInventory().getItemInMainHand().getItemMeta().isUnbreakable()) {
+
+                    } else {
+                        ItemStack toolInHand = player.getInventory().getItemInMainHand();
+                        if (toolInHand.getItemMeta() instanceof Damageable) {
+                            Damageable toolInHandMeta = (Damageable) toolInHand.getItemMeta();
+                            toolInHandMeta.setDamage(toolInHandMeta.getDamage() + 1);
+                            toolInHand.setItemMeta((ItemMeta) toolInHandMeta);
+                        }
+                    }
                 }
 
                 if (block.getCustomDrops() != null) {
@@ -92,7 +108,11 @@ public class CMP2ListenersBreakBlock implements Listener {
                                     continue;
                                 }
                             }
-                            drops.add(tempDrop.getDrop());
+                            if (tempDrop.getDrop().getType().equals(Material.BARRIER)) {
+
+                            } else {
+                                drops.add(tempDrop.getDrop());
+                            }
                             if (tempDrop.getEffect()) {
                                 Firework firework = (Firework) brokenBlock.getLocation().getWorld().spawnEntity(brokenBlock.getLocation(), EntityType.FIREWORK);
                                 FireworkMeta fireworkMeta = firework.getFireworkMeta();

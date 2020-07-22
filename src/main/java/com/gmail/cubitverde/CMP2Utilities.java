@@ -897,6 +897,22 @@ public class CMP2Utilities {
         tempStack3.setItemMeta(tempStackMeta3);
         settingsList.setItem(37, tempStack3);
 
+        ItemStack tempStack35 = new ItemStack(Material.SPAWNER);
+        ItemMeta tempStackMeta35 = tempStack35.getItemMeta();
+        if (CubMainPlugin2.afkFarm) {
+            tempStackMeta35.setDisplayName("§aAfk farms: Currently enabled");
+            List<String> tempLore = new ArrayList<>();
+            tempLore.add("§aMob drops will spawn when killed by anything.");
+            tempStackMeta35.setLore(tempLore);
+        } else {
+            tempStackMeta35.setDisplayName("§cAfk farms: Currently disabled");
+            List<String> tempLore = new ArrayList<>();
+            tempLore.add("§cMob drops will spawn only when killed by a player.");
+            tempStackMeta35.setLore(tempLore);
+        }
+        tempStack35.setItemMeta(tempStackMeta35);
+        settingsList.setItem(38, tempStack35);
+
         ItemStack tempStack4 = new ItemStack(Material.ENCHANTING_TABLE);
         ItemMeta tempStackMeta4 = tempStack4.getItemMeta();
         tempStackMeta4.setDisplayName("§aAdd new booster");
@@ -1352,14 +1368,14 @@ public class CMP2Utilities {
         customDropsInv.setItem(52, frameItem4);
 
         if (block.getCustomDrops() != null) {
-            if (block.getCustomDrops().size() > 28 * (CubMainPlugin2.lastPage.get(tempUUID))) {
+            if (CubMainPlugin2.lastPage.get(tempUUID) == null || block.getCustomDrops().size() > 28 * (CubMainPlugin2.lastPage.get(tempUUID))) {
                 ItemStack nextPageMaterial = new ItemStack(Material.ORANGE_STAINED_GLASS_PANE);
                 ItemMeta nextPageMaterialMeta = nextPageMaterial.getItemMeta();
                 nextPageMaterialMeta.setDisplayName("§aNext page");
                 nextPageMaterial.setItemMeta(nextPageMaterialMeta);
                 customDropsInv.setItem(53, nextPageMaterial);
             }
-            if (CubMainPlugin2.lastPage.get(tempUUID) > 1) {
+            if (CubMainPlugin2.lastPage.get(tempUUID) != null && CubMainPlugin2.lastPage.get(tempUUID) > 1) {
                 ItemStack previousPageMaterial = new ItemStack(Material.ORANGE_STAINED_GLASS_PANE);
                 ItemMeta previousPageMaterialMeta = previousPageMaterial.getItemMeta();
                 previousPageMaterialMeta.setDisplayName("§aPrevious page");
