@@ -37,6 +37,7 @@ public class CMP2ListenersChat implements Listener {
 
             CubMainPlugin2.addingCommand.remove(player.getUniqueId());
             CubMainPlugin2.addingCommandMob.remove(player.getUniqueId());
+            player.openInventory(CMP2Utilities.CommandsList(tempMob, tempDrop, CubMainPlugin2.addingCommand.get(player.getUniqueId())));
         }
 
         if (CubMainPlugin2.addingCommandB.keySet().contains(player.getUniqueId())) {
@@ -64,6 +65,7 @@ public class CMP2ListenersChat implements Listener {
 
             CubMainPlugin2.addingCommandB.remove(player.getUniqueId());
             CubMainPlugin2.addingCommandBlock.remove(player.getUniqueId());
+            player.openInventory(CMP2Utilities.CommandsListBlock(block, tempDrop, CubMainPlugin2.addingCommandB.get(player.getUniqueId())));
         }
 
         if (CubMainPlugin2.addingBooster.contains(player.getUniqueId())) {

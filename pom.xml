@@ -6,7 +6,7 @@
 
     <groupId>com.gmail.cubitverde</groupId>
     <artifactId>cubMainPlugin2</artifactId>
-    <version>5.4.2</version>
+    <version>5.5.2</version>
 
     <build>
         <plugins>
@@ -28,7 +28,7 @@
                         <phase>install</phase>
                         <configuration>
                             <target>
-                                <copy file="target/${project.artifactId}-${project.version}.jar" tofile="/Users/andres/Desktop/GitStuff/1TestServer/plugins/CubCustomDrops [5.4.2].jar"/>
+                                <copy file="target/${project.artifactId}-${project.version}.jar" tofile="/Users/andres/Desktop/GitStuff/1TestServer/plugins/CubCustomDrops [Dragon-Thing].jar"/>
                             </target>
                         </configuration>
                         <goals>

@@ -159,8 +159,8 @@ public class CMP2ListenersInv implements Listener {
                         if (click.getSlot() > 8 && click.getSlot() < 45) {
                             CMP2CustomDrop tempDrop = new CMP2CustomDrop();
                             tempDrop.setDrop(click.getCurrentItem());
-                            tempDrop.setDropChance(10);
-                            tempDrop.setEffect(true);
+                            tempDrop.setDropChance(0);
+                            tempDrop.setEffect(false);
                             tempDrop.setEffectColor(Color.LIME);
                             tempDrop.setSpawnerDrop(false);
                             tempDrop.setEggDrop(false);
@@ -235,56 +235,56 @@ public class CMP2ListenersInv implements Listener {
                             player.openInventory(customDropsInv2);
                         }
                         break;
-                    case "§cDecrease chance by 0.01%":
+                    case "§cDecrease chance by 0.001%":
                         tempDropArr.get(dropNumber).setDropChance(tempDrop.getDropChance() - 1);
                         tempMob2.setCustomDrops(tempDropArr);
                         CubMainPlugin2.mobNames.put(mobName2, tempMob2);
                         Inventory customDropInfo0 = CMP2Utilities.ShowCustomDropInfo(tempMob2, tempDrop, dropNumber);
                         player.openInventory(customDropInfo0);
                         break;
-                    case "§cDecrease chance by 0.1%":
+                    case "§cDecrease chance by 0.01%":
                         tempDropArr.get(dropNumber).setDropChance(tempDrop.getDropChance() - 10);
                         tempMob2.setCustomDrops(tempDropArr);
                         CubMainPlugin2.mobNames.put(mobName2, tempMob2);
                         Inventory customDropInfo01 = CMP2Utilities.ShowCustomDropInfo(tempMob2, tempDrop, dropNumber);
                         player.openInventory(customDropInfo01);
                         break;
-                    case "§cDecrease chance by 1%":
+                    case "§cDecrease chance by 0.1%":
                         tempDropArr.get(dropNumber).setDropChance(tempDrop.getDropChance() - 100);
                         tempMob2.setCustomDrops(tempDropArr);
                         CubMainPlugin2.mobNames.put(mobName2, tempMob2);
                         Inventory customDropInfo1 = CMP2Utilities.ShowCustomDropInfo(tempMob2, tempDrop, dropNumber);
                         player.openInventory(customDropInfo1);
                         break;
-                    case "§cDecrease chance by 10%":
+                    case "§cDecrease chance by 1%":
                         tempDropArr.get(dropNumber).setDropChance(tempDrop.getDropChance() - 1000);
                         tempMob2.setCustomDrops(tempDropArr);
                         CubMainPlugin2.mobNames.put(mobName2, tempMob2);
                         Inventory customDropInfo2 = CMP2Utilities.ShowCustomDropInfo(tempMob2, tempDrop, dropNumber);
                         player.openInventory(customDropInfo2);
                         break;
-                    case "§aIncrease chance by 0.01%":
+                    case "§aIncrease chance by 0.001%":
                         tempDropArr.get(dropNumber).setDropChance(tempDrop.getDropChance() + 1);
                         tempMob2.setCustomDrops(tempDropArr);
                         CubMainPlugin2.mobNames.put(mobName2, tempMob2);
                         Inventory customDropInfo15 = CMP2Utilities.ShowCustomDropInfo(tempMob2, tempDrop, dropNumber);
                         player.openInventory(customDropInfo15);
                         break;
-                    case "§aIncrease chance by 0.1%":
+                    case "§aIncrease chance by 0.01%":
                         tempDropArr.get(dropNumber).setDropChance(tempDrop.getDropChance() + 10);
                         tempMob2.setCustomDrops(tempDropArr);
                         CubMainPlugin2.mobNames.put(mobName2, tempMob2);
                         Inventory customDropInfo151 = CMP2Utilities.ShowCustomDropInfo(tempMob2, tempDrop, dropNumber);
                         player.openInventory(customDropInfo151);
                         break;
-                    case "§aIncrease chance by 1%":
+                    case "§aIncrease chance by 0.1%":
                         tempDropArr.get(dropNumber).setDropChance(tempDrop.getDropChance() + 100);
                         tempMob2.setCustomDrops(tempDropArr);
                         CubMainPlugin2.mobNames.put(mobName2, tempMob2);
                         Inventory customDropInfo3 = CMP2Utilities.ShowCustomDropInfo(tempMob2, tempDrop, dropNumber);
                         player.openInventory(customDropInfo3);
                         break;
-                    case "§aIncrease chance by 10%":
+                    case "§aIncrease chance by 1%":
                         tempDropArr.get(dropNumber).setDropChance(tempDrop.getDropChance() + 1000);
                         tempMob2.setCustomDrops(tempDropArr);
                         CubMainPlugin2.mobNames.put(mobName2, tempMob2);
@@ -991,7 +991,10 @@ public class CMP2ListenersInv implements Listener {
                             int tempInt = 0;
                             for (int i = 0; i < 28; i++) {
                                 if (click.getSlot() == CMP2Utilities.InventoryInside(54).get(i)) {
-                                    if (i  + (28 * (CubMainPlugin2.lastPage.get(player.getUniqueId()) - 1)) < block1.getCustomDrops().size()) {
+                                    if (CubMainPlugin2.lastPage.get(player.getUniqueId()) == null) {
+                                        CubMainPlugin2.lastPage.put(player.getUniqueId(), 1);
+                                    }
+                                    if (i + (28 * (CubMainPlugin2.lastPage.get(player.getUniqueId()) - 1)) < block1.getCustomDrops().size()) {
                                         tempDrop10 = block1.getCustomDrops().get(i + (28 * (CubMainPlugin2.lastPage.get(player.getUniqueId()) - 1)));
                                         tempInt = i;
                                         break;
@@ -1024,8 +1027,8 @@ public class CMP2ListenersInv implements Listener {
                         if (click.getSlot() > 8 && click.getSlot() < 45) {
                             CMP2CustomDrop tempDrop11 = new CMP2CustomDrop();
                             tempDrop11.setDrop(click.getCurrentItem());
-                            tempDrop11.setDropChance(10);
-                            tempDrop11.setEffect(true);
+                            tempDrop11.setDropChance(0);
+                            tempDrop11.setEffect(false);
                             tempDrop11.setEffectColor(Color.LIME);
                             tempDrop11.setSpawnerDrop(false);
                             tempDrop11.setEggDrop(false);

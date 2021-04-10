@@ -61,6 +61,10 @@ public class CubMainPlugin2 extends JavaPlugin {
         getServer().getPluginManager().registerEvents(listener6, this);
         CMP2ListenersGetDamaged listener7 = new CMP2ListenersGetDamaged();
         getServer().getPluginManager().registerEvents(listener7, this);
+        CMP2ListenersWorldInit listener8 = new CMP2ListenersWorldInit();
+        getServer().getPluginManager().registerEvents(listener8, this);
+        CMP2ListenersExplode listener9 = new CMP2ListenersExplode();
+        getServer().getPluginManager().registerEvents(listener9, this);
 
         globalSettings.setFortuneMultiplier(false);
         globalSettings.setLootingMultiplier(false);
@@ -103,6 +107,7 @@ public class CubMainPlugin2 extends JavaPlugin {
         }
         eggsMaterials.add(Material.HORSE_SPAWN_EGG);
         eggsMaterials.add(Material.HUSK_SPAWN_EGG);
+        eggsMaterials.add(Material.GLASS_BOTTLE);
         eggsMaterials.add(Material.IRON_INGOT);
         eggsMaterials.add(Material.LLAMA_SPAWN_EGG);
         eggsMaterials.add(Material.MAGMA_CUBE_SPAWN_EGG);
@@ -200,6 +205,7 @@ public class CubMainPlugin2 extends JavaPlugin {
         }
         eggsNames.add("§aHorse");
         eggsNames.add("§aHusk");
+        eggsNames.add("§aIllusioner");
         eggsNames.add("§aIron Golem");
         eggsNames.add("§aLlama");
         eggsNames.add("§aMagma Cube");
@@ -265,9 +271,7 @@ public class CubMainPlugin2 extends JavaPlugin {
 
         if (config.getConfigurationSection("CubCustomDrops") != null) {
 
-            if (config.getConfigurationSection("CubCustomDrops.afkFarm") != null) {
-                afkFarm = config.getBoolean("CubCustomDrops.afkFarm");
-            }
+            afkFarm = config.getBoolean("CubCustomDrops.afkFarm");
 
             if (config.getConfigurationSection("CubCustomDrops.mobNames") != null) {
                 for (int i = 0; i < config.getConfigurationSection("CubCustomDrops.mobNames.key").getKeys(false).size(); i++) {
@@ -440,6 +444,8 @@ public class CubMainPlugin2 extends JavaPlugin {
         FileConfiguration config = getConfig();
         config.set("CubCustomDrops", null);
 
+        config.set("CubCustomDrops.afkFarm", afkFarm);
+
         if (mobNames != null && mobNames.keySet().size() > 0) {
             int i = 0;
             for (String temp : mobNames.keySet()) {
@@ -539,6 +545,9 @@ public class CubMainPlugin2 extends JavaPlugin {
         if (globalSettings.getWorlds() != null && globalSettings.getWorlds().size() > 0) {
             int k = 0;
             for (World tempWorld : globalSettings.getWorlds()) {
+                if (tempWorld == null) {
+                    continue;
+                }
                 config.set("CubCustomDrops.globalSettings.GlobalWorlds." + k, tempWorld.getName());
                 k++;
             }
@@ -561,7 +570,7 @@ public class CubMainPlugin2 extends JavaPlugin {
                 k++;
             }
         }
-        config.set("CubCustomDrops.afkFarm", afkFarm);
+
         config.set("CubCustomDrops.globalSettings.LoadedOnce", true);
 
         saveConfig();

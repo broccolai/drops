@@ -1,6 +1,7 @@
 package com.gmail.cubitverde;
 
 import org.bukkit.FireworkEffect;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
@@ -72,7 +73,7 @@ public class CMP2ListenersKillmob implements Listener {
                         }
                         if (player != null) {
                             if (CubMainPlugin2.globalSettings.getLootingAll()) {
-                                if (player.getInventory().getItemInMainHand().getItemMeta().getEnchantLevel(Enchantment.LOOT_BONUS_MOBS) > 0) {
+                                if (player.getInventory().getItemInMainHand().getItemMeta() != null && player.getInventory().getItemInMainHand().getItemMeta().getEnchantLevel(Enchantment.LOOT_BONUS_MOBS) > 0) {
                                     int level = player.getInventory().getItemInMainHand().getItemMeta().getEnchantLevel(Enchantment.LOOT_BONUS_MOBS);
                                     if (CubMainPlugin2.globalSettings.getLootingMultiplier()) {
                                         for (int i = 0; i < level; i++) {
@@ -84,7 +85,7 @@ public class CMP2ListenersKillmob implements Listener {
                                 }
                             }
                         }
-                        if ((tempDouble * 10000) < chance) {
+                        if ((tempDouble * 100000) < chance) {
                             if (tempDrop.getWorldOverride()) {
                                 if (tempDrop.getWorlds() != null && tempDrop.getWorlds().contains(death.getEntity().getWorld())) {
 
@@ -160,7 +161,13 @@ public class CMP2ListenersKillmob implements Listener {
                         }
                     }
                     for (ItemStack item : Drops) {
-                        deadEntity.getWorld().dropItem(deadEntity.getLocation(), item);
+                        Location location;
+                        if (deadEntity.getType().equals(EntityType.ENDER_DRAGON)) {
+                            location = new Location(deadEntity.getWorld(), 0, 128, 0);
+                        } else {
+                            location = deadEntity.getLocation();
+                        }
+                        deadEntity.getWorld().dropItem(location, item);
                     }
                 }
             }

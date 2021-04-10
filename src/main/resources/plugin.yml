@@ -1,5 +1,5 @@
 name: CubCustomDrops
-version: 5.4.2
+version: 5.5.2
 load: POSTWORLD
 softdepend: [Multiverse-Core, UltraRegions, Ultra_Regions, FabledSkyblock, BentoBox]
 author: cubito_verde

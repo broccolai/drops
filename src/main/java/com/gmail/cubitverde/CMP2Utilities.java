@@ -378,53 +378,53 @@ public class CMP2Utilities {
         if (tempDrop.getDropChance() > 0) {
             ItemStack dropSettings0 = new ItemStack(Material.RED_CONCRETE);
             ItemMeta dropSettings0Meta = dropSettings0.getItemMeta();
-            dropSettings0Meta.setDisplayName("§cDecrease chance by 0.01%");
+            dropSettings0Meta.setDisplayName("§cDecrease chance by 0.001%");
             dropSettings0.setItemMeta(dropSettings0Meta);
             customDropInfo.setItem(22, dropSettings0);
             if (tempDrop.getDropChance() > 9) {
                 ItemStack dropSettings1 = new ItemStack(Material.RED_CONCRETE);
                 ItemMeta dropSettings1Meta = dropSettings1.getItemMeta();
-                dropSettings1Meta.setDisplayName("§cDecrease chance by 0.1%");
+                dropSettings1Meta.setDisplayName("§cDecrease chance by 0.01%");
                 dropSettings1.setItemMeta(dropSettings1Meta);
                 customDropInfo.setItem(23, dropSettings1);
                 if (tempDrop.getDropChance() > 99) {
                     ItemStack dropSettings2 = new ItemStack(Material.RED_CONCRETE);
                     ItemMeta dropSettings2Meta = dropSettings2.getItemMeta();
-                    dropSettings2Meta.setDisplayName("§cDecrease chance by 1%");
+                    dropSettings2Meta.setDisplayName("§cDecrease chance by 0.1%");
                     dropSettings2.setItemMeta(dropSettings2Meta);
                     customDropInfo.setItem(24, dropSettings2);
                     if (tempDrop.getDropChance() > 999) {
                         ItemStack dropSettings3 = new ItemStack(Material.RED_CONCRETE);
                         ItemMeta dropSettings3Meta = dropSettings3.getItemMeta();
-                        dropSettings3Meta.setDisplayName("§cDecrease chance by 10%");
+                        dropSettings3Meta.setDisplayName("§cDecrease chance by 1%");
                         dropSettings3.setItemMeta(dropSettings3Meta);
                         customDropInfo.setItem(25, dropSettings3);
                     }
                 }
             }
         }
-        if (tempDrop.getDropChance() < 10000) {
+        if (tempDrop.getDropChance() < 100000) {
             ItemStack dropSettings0 = new ItemStack(Material.GREEN_CONCRETE);
             ItemMeta dropSettings0Meta = dropSettings0.getItemMeta();
-            dropSettings0Meta.setDisplayName("§aIncrease chance by 0.01%");
+            dropSettings0Meta.setDisplayName("§aIncrease chance by 0.001%");
             dropSettings0.setItemMeta(dropSettings0Meta);
             customDropInfo.setItem(13, dropSettings0);
-            if (tempDrop.getDropChance() < 9991) {
+            if (tempDrop.getDropChance() < 99991) {
                 ItemStack dropSettings1 = new ItemStack(Material.GREEN_CONCRETE);
                 ItemMeta dropSettings1Meta = dropSettings1.getItemMeta();
-                dropSettings1Meta.setDisplayName("§aIncrease chance by 0.1%");
+                dropSettings1Meta.setDisplayName("§aIncrease chance by 0.01%");
                 dropSettings1.setItemMeta(dropSettings1Meta);
                 customDropInfo.setItem(14, dropSettings1);
-                if (tempDrop.getDropChance() < 9901) {
+                if (tempDrop.getDropChance() < 99901) {
                     ItemStack dropSettings2 = new ItemStack(Material.GREEN_CONCRETE);
                     ItemMeta dropSettings2Meta = dropSettings2.getItemMeta();
-                    dropSettings2Meta.setDisplayName("§aIncrease chance by 1%");
+                    dropSettings2Meta.setDisplayName("§aIncrease chance by 0.1%");
                     dropSettings2.setItemMeta(dropSettings2Meta);
                     customDropInfo.setItem(15, dropSettings2);
-                    if (tempDrop.getDropChance() < 9001) {
+                    if (tempDrop.getDropChance() < 99001) {
                         ItemStack dropSettings3 = new ItemStack(Material.GREEN_CONCRETE);
                         ItemMeta dropSettings3Meta = dropSettings3.getItemMeta();
-                        dropSettings3Meta.setDisplayName("§aIncrease chance by 10%");
+                        dropSettings3Meta.setDisplayName("§aIncrease chance by 1%");
                         dropSettings3.setItemMeta(dropSettings3Meta);
                         customDropInfo.setItem(16, dropSettings3);
                     }
@@ -434,10 +434,12 @@ public class CMP2Utilities {
 
         ItemStack dropSettings1 = new ItemStack(Material.PAPER);
         ItemMeta dropSettings1Meta = dropSettings1.getItemMeta();
-        if (tempDrop.getDropChance() % 100 < 10) {
-            dropSettings1Meta.setDisplayName("§2Current chance: §a" + (tempDrop.getDropChance() / 100) + ".0" + (tempDrop.getDropChance() % 100) + "%");
+        if (tempDrop.getDropChance() % 1000 < 10) {
+            dropSettings1Meta.setDisplayName("§2Current chance: §a" + (tempDrop.getDropChance() / 1000) + ".00" + (tempDrop.getDropChance() % 1000) + "%");
+        } else if (tempDrop.getDropChance() % 1000 < 100) {
+            dropSettings1Meta.setDisplayName("§2Current chance: §a" + (tempDrop.getDropChance() / 1000) + ".0" + (tempDrop.getDropChance() % 1000) + "%");
         } else {
-            dropSettings1Meta.setDisplayName("§2Current chance: §a" + (tempDrop.getDropChance() / 100) + "." + (tempDrop.getDropChance() % 100) + "%");
+            dropSettings1Meta.setDisplayName("§2Current chance: §a" + (tempDrop.getDropChance() / 1000) + "." + (tempDrop.getDropChance() % 1000) + "%");
         }
         dropSettings1.setItemMeta(dropSettings1Meta);
         customDropInfo.setItem(12, dropSettings1);
@@ -1389,7 +1391,7 @@ public class CMP2Utilities {
                 if (tempInt2 > 27) {
                     break;
                 }
-                if (tempInt1 < 28 * (CubMainPlugin2.lastPage.get(tempUUID) - 1)) {
+                if (CubMainPlugin2.lastPage.get(tempUUID) != null && tempInt1 < 28 * (CubMainPlugin2.lastPage.get(tempUUID) - 1)) {
                     tempInt1++;
                     continue;
                 }
@@ -1507,50 +1509,50 @@ public class CMP2Utilities {
         if (tempDrop.getDropChance() > 0) {
             ItemStack dropSettings0 = new ItemStack(Material.RED_CONCRETE);
             ItemMeta dropSettings0Meta = dropSettings0.getItemMeta();
-            dropSettings0Meta.setDisplayName("§cDecrease chance by 0.01%");
+            dropSettings0Meta.setDisplayName("§cDecrease chance by 0.001%");
             dropSettings0.setItemMeta(dropSettings0Meta);
             customDropInfo.setItem(22, dropSettings0);
             if (tempDrop.getDropChance() > 9) {
                 ItemStack dropSettings1 = new ItemStack(Material.RED_CONCRETE);
                 ItemMeta dropSettings1Meta = dropSettings1.getItemMeta();
-                dropSettings1Meta.setDisplayName("§cDecrease chance by 0.1%");
+                dropSettings1Meta.setDisplayName("§cDecrease chance by 0.01%");
                 dropSettings1.setItemMeta(dropSettings1Meta);
                 customDropInfo.setItem(23, dropSettings1);
                 if (tempDrop.getDropChance() > 99) {
                     ItemStack dropSettings2 = new ItemStack(Material.RED_CONCRETE);
                     ItemMeta dropSettings2Meta = dropSettings2.getItemMeta();
-                    dropSettings2Meta.setDisplayName("§cDecrease chance by 1%");
+                    dropSettings2Meta.setDisplayName("§cDecrease chance by 0.1%");
                     dropSettings2.setItemMeta(dropSettings2Meta);
                     customDropInfo.setItem(24, dropSettings2);
                     if (tempDrop.getDropChance() > 999) {
                         ItemStack dropSettings3 = new ItemStack(Material.RED_CONCRETE);
                         ItemMeta dropSettings3Meta = dropSettings3.getItemMeta();
-                        dropSettings3Meta.setDisplayName("§cDecrease chance by 10%");
+                        dropSettings3Meta.setDisplayName("§cDecrease chance by 1%");
                         dropSettings3.setItemMeta(dropSettings3Meta);
                         customDropInfo.setItem(25, dropSettings3);
                     }
                 }
             }
         }
-        if (tempDrop.getDropChance() < 10000) {
+        if (tempDrop.getDropChance() < 100000) {
             ItemStack dropSettings0 = new ItemStack(Material.GREEN_CONCRETE);
             ItemMeta dropSettings0Meta = dropSettings0.getItemMeta();
             dropSettings0Meta.setDisplayName("§aIncrease chance by 0.01%");
             dropSettings0.setItemMeta(dropSettings0Meta);
             customDropInfo.setItem(13, dropSettings0);
-            if (tempDrop.getDropChance() < 9991) {
+            if (tempDrop.getDropChance() < 99991) {
                 ItemStack dropSettings1 = new ItemStack(Material.GREEN_CONCRETE);
                 ItemMeta dropSettings1Meta = dropSettings1.getItemMeta();
                 dropSettings1Meta.setDisplayName("§aIncrease chance by 0.1%");
                 dropSettings1.setItemMeta(dropSettings1Meta);
                 customDropInfo.setItem(14, dropSettings1);
-                if (tempDrop.getDropChance() < 9901) {
+                if (tempDrop.getDropChance() < 99901) {
                     ItemStack dropSettings2 = new ItemStack(Material.GREEN_CONCRETE);
                     ItemMeta dropSettings2Meta = dropSettings2.getItemMeta();
                     dropSettings2Meta.setDisplayName("§aIncrease chance by 1%");
                     dropSettings2.setItemMeta(dropSettings2Meta);
                     customDropInfo.setItem(15, dropSettings2);
-                    if (tempDrop.getDropChance() < 9001) {
+                    if (tempDrop.getDropChance() < 99001) {
                         ItemStack dropSettings3 = new ItemStack(Material.GREEN_CONCRETE);
                         ItemMeta dropSettings3Meta = dropSettings3.getItemMeta();
                         dropSettings3Meta.setDisplayName("§aIncrease chance by 10%");
@@ -1563,10 +1565,12 @@ public class CMP2Utilities {
 
         ItemStack dropSettings1 = new ItemStack(Material.PAPER);
         ItemMeta dropSettings1Meta = dropSettings1.getItemMeta();
-        if (tempDrop.getDropChance() % 100 < 10) {
-            dropSettings1Meta.setDisplayName("§2Current chance: §a" + (tempDrop.getDropChance() / 100) + ".0" + (tempDrop.getDropChance() % 100) + "%");
+        if (tempDrop.getDropChance() % 1000 < 10) {
+            dropSettings1Meta.setDisplayName("§2Current chance: §a" + (tempDrop.getDropChance() / 1000) + ".00" + (tempDrop.getDropChance() % 1000) + "%");
+        } else if (tempDrop.getDropChance() % 1000 < 100) {
+            dropSettings1Meta.setDisplayName("§2Current chance: §a" + (tempDrop.getDropChance() / 1000) + ".0" + (tempDrop.getDropChance() % 1000) + "%");
         } else {
-            dropSettings1Meta.setDisplayName("§2Current chance: §a" + (tempDrop.getDropChance() / 100) + "." + (tempDrop.getDropChance() % 100) + "%");
+            dropSettings1Meta.setDisplayName("§2Current chance: §a" + (tempDrop.getDropChance() / 1000) + "." + (tempDrop.getDropChance() % 1000) + "%");
         }
         dropSettings1.setItemMeta(dropSettings1Meta);
         customDropInfo.setItem(12, dropSettings1);
